@@ -17,11 +17,11 @@ public class UniqueString {
    }
 
    public static void main(String[] args) {
-      String str = "works";
-      String str2 = "does not work";
+      String str = "Special";
+      String str2 = "Ordinary";
       char[] strArray = str.toCharArray();
       char[] str2Array = str2.toCharArray();
-      System.out.println("The result of the string 1 : " + UniqueStringChecker(strArray));
-      System.out.println("The result of the string 2 : " + UniqueStringChecker(str2Array));
+      System.out.println("The result of the \"" + str +"\" : " + UniqueStringChecker(strArray));
+      System.out.println("The result of the \"" + str2 +"\" : " + UniqueStringChecker(str2Array));
    }
 }
