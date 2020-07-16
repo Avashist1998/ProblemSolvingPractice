@@ -11,22 +11,19 @@ public class RotateMatrix {
     }
 
     static void flipColumns(final int arr[][]) {
+        int N = arr.length;
         for (int j = 0; j < N; ++j) {
             for (int i = 0; i < N / 2; ++i) {
                 final int temp = arr[i][j];
-                arr[i][j] = arr[N - i][j];
-                arr[N - i][j] = temp;
+                arr[i][j] = arr[N - i-1][j];
+                arr[N - i-1][j] = temp;
             }
 
         }
 
     }
 
-    static int[][] rotateMatrix(final int[][] Matrix) throws Exception {
-        final int row = Matrix.length;
-        final int col = Matrix[0].length;
-        if (row != col)
-            throw new Exception("The Matrix is not a square");
+    static int[][] rotateMatrix(final int[][] Matrix) {
         transpose(Matrix);
         flipColumns(Matrix);
         return Matrix;
@@ -48,6 +45,7 @@ public class RotateMatrix {
         System.out.println("The original array :");
         printMatrix(arr);
         arr = rotateMatrix(arr);
+        System.out.println("The rotated array :");
         printMatrix(arr);
         
     }
