@@ -1,20 +1,20 @@
 public class RotateMatrix {
-    static void transpose(final int arr[][]) {
-        final int N = arr.length;
+    static void transpose(int arr[][]) {
+        int N = arr.length;
         for (int i = 0; i < N; ++i) {
             for (int j = 0; j < i + 1; ++j) {
-                final int temp = arr[i][j];
+                int temp = arr[i][j];
                 arr[i][j] = arr[j][i];
                 arr[j][i] = temp;
             }
         }
     }
 
-    static void flipColumns(final int arr[][]) {
+    static void flipColumns(int arr[][]) {
         int N = arr.length;
         for (int j = 0; j < N; ++j) {
             for (int i = 0; i < N / 2; ++i) {
-                final int temp = arr[i][j];
+                int temp = arr[i][j];
                 arr[i][j] = arr[N - i-1][j];
                 arr[N - i-1][j] = temp;
             }
@@ -23,7 +23,7 @@ public class RotateMatrix {
 
     }
 
-    static int[][] rotateMatrix(final int[][] Matrix) {
+    static int[][] rotateMatrix(int[][] Matrix) {
         transpose(Matrix);
         flipColumns(Matrix);
         return Matrix;
