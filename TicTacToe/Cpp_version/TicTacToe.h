@@ -7,10 +7,10 @@ class TicTacToe {
     protected:
         char winner;
     public:
-        char board[9];
-        char currentMarker;
-        char userMarker;
-        char aiMarker;
+        protected: char board[9];
+        protected: char currentMarker;
+        protected: char userMarker;
+        protected: char aiMarker;
         TicTacToe (char playerToken, char aiMarker);
         void setBoard();
         bool withinRange(int spot);
