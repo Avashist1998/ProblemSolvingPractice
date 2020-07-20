@@ -48,10 +48,11 @@ public class TicTacToeApplication {
             System.out.println();
             System.out.println("Do you want to play again? Enter Y for yes and N for no.");
             char response = myObj.next().charAt(0);
-            doYouWantToPlay = (response == 'Y') ? true : false;
+            doYouWantToPlay = (response == 'Y' || response == 'y') ? true : false;
             System.out.println();
             System.out.println();
         }
+        myObj.close();
 
     }
 
