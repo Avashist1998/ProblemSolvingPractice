@@ -1,7 +1,3 @@
-from typing_extensions import ParamSpec
-import object
-
-
 class MinHeap(object):
     
     def __init__(self, capacity:int = 10) -> None:
