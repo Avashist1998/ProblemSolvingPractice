@@ -28,3 +28,33 @@ def quick_sort(arr:List):
                 arr[i] = right.pop(0)
 
 
+
+def partition(arr, left_index=None, right_index=None):
+    pivot = arr[left_index + (right_index - left_index) //2]
+
+    while(left_index <= right_index):
+        while(arr[left_index] < pivot):
+            left_index += 1
+        while(arr[right_index] > pivot):
+            right_index -= 1
+        
+        if (left_index <= right_index):
+            arr[left_index], arr[right_index] = arr[right_index], arr[left_index]
+            left_index += 1
+            right_index -= 1
+
+    return left_index
+
+
+
+def quick_sort_inplace(arr:List, left_index:int, right_index:int):
+
+    index = partition(arr, left_index, right_index)
+
+    if (left_index < index - 1 ):
+        quick_sort_inplace(arr, left_index, index-1)
+    if (index < right_index):
+        quick_sort_inplace(arr, index, right_index)
+
+
+
