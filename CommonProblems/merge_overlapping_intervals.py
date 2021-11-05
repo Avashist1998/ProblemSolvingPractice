@@ -1,8 +1,3 @@
-
-
-
-
-
 def merge_overlapping_intervals(arr:list):
     
     i = 0
