@@ -1,9 +1,10 @@
+from __future__ import annotations
 from typing import List, Optional, Union
 
 
 class Node(object):
 
-    def __init__(self, val:Union[int,str] = None, neighbors:List[Node] = None) -> None:
+    def __init__(self, val:Union[int,str] = None, neighbors:List[Node] = []) -> None:
         super().__init__()
         self.val = val
         self.neighbors = neighbors
