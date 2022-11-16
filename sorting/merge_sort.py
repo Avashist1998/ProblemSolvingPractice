@@ -1,7 +1,7 @@
 """Merge sort class definition"""
 
 from typing import List
-from sorting.base import SortingAlgo
+from base import SortingAlgo
 
 
 class MergeSort(SortingAlgo):

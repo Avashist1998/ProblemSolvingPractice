@@ -1,7 +1,7 @@
 """Slection sort class definition"""
 
 from typing import List
-from sorting.base import SortingAlgo
+from base import SortingAlgo
 
 
 class SlectionSort(SortingAlgo):
@@ -20,11 +20,12 @@ class SlectionSort(SortingAlgo):
             sorted array of integers.
         """
         for i in range(len(arr) - 1, -1, -1):
+            max_index = 0
             current_max = arr[0]
-
             for j in range(0, i + 1):
                 if current_max < arr[j]:
                     current_max = arr[j]
+                    max_index = j
 
-            arr[i] = current_max
+            arr[i], arr[max_index] = current_max, arr[i]
         return arr

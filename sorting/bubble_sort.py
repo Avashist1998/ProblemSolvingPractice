@@ -1,7 +1,7 @@
 """Bubble sort class definition"""
 
 from typing import List
-from sorting.base import SortingAlgo
+from base import SortingAlgo
 
 
 class BubbleSort(SortingAlgo):
@@ -21,9 +21,8 @@ class BubbleSort(SortingAlgo):
         """
         sorted_index = len(arr) - 1
         while sorted_index != 0:
-            for i in range(0, sorted_index):
-                if arr[i] > arr[i - 1]:
-                    arr[i], arr[i + 1] = arr[i + 1], arr[i]
-
-            sorted_index += 1
+            for i in range(1, sorted_index + 1):
+                if arr[i - 1] > arr[i]:
+                    arr[i], arr[i - 1] = arr[i - 1], arr[i]
+            sorted_index -= 1
         return arr

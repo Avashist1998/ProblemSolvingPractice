@@ -1,7 +1,7 @@
 """Heap sort class definition"""
 
 from typing import List
-from sorting.base import SortingAlgo
+from base import SortingAlgo
 
 
 class HeapSort(SortingAlgo):
@@ -40,7 +40,7 @@ class HeapSort(SortingAlgo):
             largest = right_val
         if (length > left_val and arr[left_val] > arr[largest]):
             largest = left_val
-        if length != largest:
+        if index != largest:
             temp = arr[index]
             arr[index] = arr[largest]
             arr[largest] = temp

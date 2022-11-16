@@ -1,7 +1,7 @@
 """Quick sort class definition"""
 
 from typing import List
-from sorting.base import SortingAlgo
+from base import SortingAlgo
 
 
 class QuickSort(SortingAlgo):
@@ -21,12 +21,13 @@ class QuickSort(SortingAlgo):
         """
         if len(arr) > 1:
             pivot = len(arr) - 1
+            pivot_val = arr[pivot]
             right, left, equal = [], [], 1
 
             for i in range(pivot):
-                if arr[i] > pivot:
+                if arr[i] > pivot_val:
                     right.append(arr[i])
-                elif arr[i] < pivot:
+                elif arr[i] < pivot_val:
                     left.append(arr[i])
                 else:
                     equal += 1
@@ -37,7 +38,7 @@ class QuickSort(SortingAlgo):
                 if len(left) != 0:
                     arr[i] = left.pop(0)
                 elif equal != 0:
-                    arr[i] = arr[pivot]
+                    arr[i] = pivot_val
                     equal -= 1
                 else:
                     arr[i] = right.pop(0)

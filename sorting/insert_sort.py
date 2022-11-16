@@ -1,7 +1,7 @@
 """Insert sort class definition"""
 
 from typing import List
-from sorting.base import SortingAlgo
+from base import SortingAlgo
 
 
 class InsertSort(SortingAlgo):
@@ -24,7 +24,7 @@ class InsertSort(SortingAlgo):
             j = i - 1
 
             while (j >= 0 and current_val < arr[j]):
-                arr[j] = arr[j + 1]
+                arr[j + 1] = arr[j]
                 j -= 1
             arr[j + 1] = current_val
         return arr
