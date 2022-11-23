@@ -1,6 +1,6 @@
 """Singly LinkedList Implementation"""
 
-from typing import Optional
+from typing import List, Optional, Union
 from base import LinkedList, ListNode
 
 
@@ -48,12 +48,29 @@ class SinglyListNode(ListNode):
 class SinglyLinkedList(LinkedList):
     """Singly Linked List"""
 
-    def __init__(self, val: int):
+    def __init__(self, data: Optional[Union[int, List[int]]] = None):
         """Creats a Singly Linked List"""
-        self._head: Optional[ListNode] = SinglyListNode(val)
-        self._tail: Optional[ListNode] = self._head.get_next()
-        self._walker = None
-        self._size = 1
+        self._size: int = 0
+        self._head: Optional[ListNode] = None
+        self._tail: Optional[ListNode] = None
+        self._walker: Optional[ListNode] = None
+        if data:
+            if isinstance(data, int):
+                self._size = 1
+                self._head = SinglyListNode(data)
+                self._tail = self._head.get_next()
+            else:
+                if len(data) > 0:
+                    self._size = 1
+                    self._head = SinglyListNode(data[0])
+                    walker: Optional[ListNode] = self._head
+                    for val in data[1:]:
+                        next_walker = SinglyListNode(val)
+                        if walker:
+                            walker.set_next(next_walker)
+                            walker = walker.get_next()
+                        self._size += 1
+                    self._tail = walker
 
     def add(self, node: ListNode) -> None:
         """Adds element to the end of the List.
@@ -107,3 +124,7 @@ class SinglyLinkedList(LinkedList):
             res += f"{node.get_val()} -> "
         res = res[:-4] + "]"
         return res
+
+    def get_head(self) -> Optional[ListNode]:
+        """Returns the head of the list."""
+        return self._head
