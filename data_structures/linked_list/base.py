@@ -1,6 +1,7 @@
 """Base linked list class definition"""
 
 from abc import ABC, abstractmethod
+from typing import Optional
 
 
 class ListNode(ABC):
@@ -11,7 +12,7 @@ class ListNode(ABC):
         """Update the value of the node."""
 
     @abstractmethod
-    def set_next(self, node: 'ListNode'):
+    def set_next(self, node: Optional['ListNode']):
         """Update the value of the next node."""
 
     @abstractmethod

@@ -38,18 +38,19 @@ class TestRemoveDuplicate(unittest.TestCase):
     def test_even_duplicate_case(self):
         """Test even number of duplicate cases."""
         values = [1, 2, 4, 2, 6, 8]
+        expected_values = ["1", "2", "4", "6", "8"]
         a_list = SinglyLinkedList(values)
         remove_duplicates(a_list.get_head())
-        expected = "[" + " -> ".join(set(values)) + "]"
+        expected = "[" + " -> ".join(expected_values) + "]"
         self.assertEqual(str(a_list), expected)
 
     def test_odd_duplicate_case(self):
         """Test odd number of duplicate cases."""
-        values = [1, 2, 4, 9, 2, 6, 8]
+        values = [1, 2, 2, 4, 9, 2, 6, 8]
+        expected_values = ["1", "2", "4", "9", "6", "8"]
         a_list = SinglyLinkedList(values)
         remove_duplicates(a_list.get_head())
-        expected = "[" + " -> ".join(set(values)) + "]"
-        # "[1 -> 2 -> 4 -> 9 -> 6 -> 8]"
+        expected = "[" + " -> ".join(expected_values) + "]"
         self.assertEqual(str(a_list), expected)
 
 

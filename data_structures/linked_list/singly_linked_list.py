@@ -1,7 +1,7 @@
 """Singly LinkedList Implementation"""
 
 from typing import List, Optional, Union
-from base import LinkedList, ListNode
+from data_structures.linked_list.base import ListNode, LinkedList
 
 
 class SinglyListNode(ListNode):
@@ -33,7 +33,7 @@ class SinglyListNode(ListNode):
         """
         return self._next
 
-    def set_next(self, node: ListNode) -> None:
+    def set_next(self, node: Optional[ListNode]) -> None:
         """Sets the next node.
         Args:
             node: the new next node of the node.
