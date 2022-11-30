@@ -1,14 +1,14 @@
 """Base linked list class definition"""
 
 from abc import ABC, abstractmethod
-from typing import Optional
+from typing import Optional, Union
 
 
 class ListNode(ABC):
     """Abstract class for ListNode data structure."""
 
     @abstractmethod
-    def set_val(self, val: int):
+    def set_val(self, val: Union[int, str]):
         """Update the value of the node."""
 
     @abstractmethod
@@ -16,11 +16,11 @@ class ListNode(ABC):
         """Update the value of the next node."""
 
     @abstractmethod
-    def get_val(self):
+    def get_val(self) -> Union[int, str]:
         """Returns the value of the node"""
 
     @abstractmethod
-    def get_next(self):
+    def get_next(self) -> Optional['ListNode']:
         "Returns the next node"
 
     @abstractmethod
@@ -32,10 +32,10 @@ class LinkedList(ABC):
     """Abasctract class for a LinkedList data structure."""
 
     @abstractmethod
-    def add(self, node: ListNode) -> None:
+    def add(self, val: Union[int, str]) -> None:
         """Adds a node the end of the list.
         Args:
-            node: node to be added to the list
+            val: int to be added to end of the list
         """
 
     @abstractmethod

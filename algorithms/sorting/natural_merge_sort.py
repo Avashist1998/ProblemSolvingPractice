@@ -12,8 +12,8 @@ class NaturalMergeSort(SortingAlgo):
     def __init__(self):
         """Default constructor"""
 
-    def merge_routine(self, list_1: ListNode,
-                      list_2: ListNode) -> Optional[ListNode]:
+    def merge_routine(self, list_1: Optional[ListNode],
+                      list_2: Optional[ListNode]) -> Optional[ListNode]:
         """Merge routine of the generated files.
         Args:
             list_1: a sorted linked list
@@ -22,56 +22,59 @@ class NaturalMergeSort(SortingAlgo):
             a sorted linked list by combining inputs
         """
         dummy_head: ListNode = SinglyListNode(0)
-        walker = dummy_head
+        walker: Optional[ListNode] = dummy_head
         while list_1 or list_2:
 
             if list_1 is None:
                 assert list_2 is not None
+                assert walker is not None
                 walker.set_next(list_2)
                 list_2 = list_2.get_next()
                 walker = walker.get_next()
 
             elif list_2 is None:
                 assert list_1 is not None
+                assert walker is not None
                 walker.set_next(list_1)
                 list_1 = list_1.get_next()
                 walker = walker.get_next()
 
             else:
                 if list_1.get_val() > list_2.get_val():
+                    assert walker is not None
                     walker.set_next(list_2)
                     list_2 = list_2.get_next()
                 else:
+                    assert walker is not None
                     walker.set_next(list_1)
                     list_1 = list_1.get_next()
                 walker = walker.get_next()
 
         return dummy_head.get_next()
 
-    def natural_split_list(self, head: ListNode) -> List[ListNode]:
+    def natural_split_list(self, head: ListNode) -> List[Optional[ListNode]]:
         """Naturally Splits the Linked List
         Args:
             head: head of the linked list
         Returns:
             Queue of the split nodes
         """
-        queue: List[ListNode] = []
+        queue: List[Optional[ListNode]] = []
         walker: Optional[ListNode] = head
-        curr_head: ListNode = head
+        curr_head: Optional[ListNode] = head
         while walker:
-            if walker.get_next() is None:
-                # assert walker.get_next() is None
-                queue.append(curr_head)
-                walker.set_next(None)
-                walker = walker.get_next()
-
-            elif walker.get_next().get_val() < walker.get_val():
-                queue.append(curr_head)
-                curr_head = walker.get_next()
-                walker.set_next(None)
-                walker = curr_head
-
+            walker_next = walker.get_next()
+            if walker_next:
+                if walker_next.get_val() < walker.get_val():
+                    queue.append(curr_head)
+                    curr_head = walker.get_next()
+                    walker.set_next(None)
+                    walker = curr_head
+                else:
+                    walker = walker_next
             else:
+                queue.append(curr_head)
+                walker.set_next(None)
                 walker = walker.get_next()
         return queue
 
@@ -91,23 +94,15 @@ class NaturalMergeSort(SortingAlgo):
             arr_head: Optional[ListNode] = arr_linked_list.get_head()
             assert arr_head is not None
             queue = self.natural_split_list(arr_head)
-            len_queue = len(queue)
-            while len_queue != 1:
-                while len_queue > 0:
-                    if len_queue > 1:
-                        list_1 = queue.pop(0)
-                        list_2 = queue.pop(0)
-                        len_queue -= 2
-                        merged_list = self.merge_routine(list_1, list_2)
-                        assert merged_list is not None
-                        queue.append(merged_list)
-                    else:
-                        queue.append(queue.pop(0))
-                        len_queue -= 1
-                len_queue = len(queue)
+            while len(queue) > 1:
+                list_1 = queue.pop(0)
+                list_2 = queue.pop(0)
+                merged_list = self.merge_routine(list_1, list_2)
+                assert merged_list is not None
+                queue.append(merged_list)
 
             res = []
-            walker = queue.pop(0)
+            walker: Optional[ListNode] = queue.pop(0)
             while walker:
                 res.append(walker.get_val())
                 walker = walker.get_next()
