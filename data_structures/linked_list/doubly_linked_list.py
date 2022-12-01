@@ -108,8 +108,12 @@ class DoublyLinkedList(LinkedList):
             self._tail = node
         self._size += 1
 
-    def remove_head(self) -> None:
-        """Removes the head node of the List."""
+    def remove_head(self) -> Optional[ListNode]:
+        """Removes the head node of the List.
+        Returns:
+            return the previous head of the list
+        """
+        prev_head = self._head
         if self._size > 1 and self._head:
             self._head = self._head.get_next()
             assert isinstance(self._head, DoublyListNode)
@@ -119,8 +123,7 @@ class DoublyLinkedList(LinkedList):
             self._head = None
             self._tail = None
             self._size = 0
-        else:
-            pass
+        return prev_head
 
     def __len__(self) -> int:
         """Returns the size of the List"""

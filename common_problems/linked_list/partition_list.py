@@ -5,7 +5,8 @@ import unittest
 from data_structures.linked_list.base import ListNode
 from data_structures.linked_list.singly_linked_list import SinglyLinkedList
 
-def partition_list(node: ListNode, val: int) -> ListNode:
+
+def partition_list(node: ListNode, val: int) -> Optional[ListNode]:
     """Partition the list based on the value.
     Args:
         val: int value to split the list
@@ -18,16 +19,18 @@ def partition_list(node: ListNode, val: int) -> ListNode:
 
     walker: Optional[ListNode] = node
     while walker:
-        if walker.get_val() > val:
+
+        if int(walker.get_val()) > val:
             right_list.add(walker.get_val())
         else:
             left_list.add(walker.get_val())
         walker = walker.get_next()
-    
+
     for right in right_list:
         left_list.add(right.get_val())
-    
+
     return left_list.get_head()
+
 
 class TestPartitionList(unittest.TestCase):
     """Test partition_list function."""
@@ -62,7 +65,7 @@ class TestPartitionList(unittest.TestCase):
         for value in values:
             self.assertEqual(value, partition_node.get_val())
             if partition_node:
-                partition_node = partition_node.get_next() 
+                partition_node = partition_node.get_next()
 
 
 if __name__ == "__main__":

@@ -79,7 +79,7 @@ class NaturalMergeSort(SortingAlgo):
         return queue
 
     def sort(self, arr: List[int]) -> List[int]:
-        """Merge sorting method.
+        """Natural merge sorting method.
         Time Complexity: O(nlog(n))
         Space Complexity: O(n)
         Args:
