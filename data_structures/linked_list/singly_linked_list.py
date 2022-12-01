@@ -49,14 +49,15 @@ class SinglyLinkedList(LinkedList):
     """Singly Linked List"""
 
     def __init__(self,
-                 data: Optional[Union[int, str, List[Union[int, str]]]] = None):
+                 data: Optional[Union[int, str, List[Union[int,
+                                                           str]]]] = None):
         """Creats a Singly Linked List"""
         self._size: int = 0
         self._head: Optional[ListNode] = None
         self._tail: Optional[ListNode] = None
         self._walker: Optional[ListNode] = None
         if data:
-            if isinstance(data, int) or isinstance(data, str):
+            if isinstance(data, (int, str)):
                 self._size = 1
                 self._head = SinglyListNode(data)
                 self._tail = self._head.get_next()
