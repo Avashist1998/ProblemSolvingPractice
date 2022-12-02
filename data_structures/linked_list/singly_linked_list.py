@@ -91,17 +91,39 @@ class SinglyLinkedList(LinkedList):
             self._tail = node
         self._size += 1
 
-    def remove_head(self) -> None:
-        """Removes the head node of the List."""
+    def add_front(self, val: Union[int, str]) -> None:
+        """Adds element to the front of the List.
+        Args:
+            val: number added to the front of the list
+        """
+        node: ListNode = SinglyListNode(val)
+        if self._size == 0:
+            self._head = node
+            self._tail = self._head.get_next()
+        elif self._size == 1 and self._head:
+            self._tail = self._head
+            self._head = node
+            self._head.set_next(self._tail)
+        else:
+            node.set_next(self._head)
+            self._head = node
+        self._size += 1
+
+    def remove_head(self) -> Optional[ListNode]:
+        """Removes the head node of the List.
+        Returns:
+            return the previous head of the list.
+        """
+        prev_head = self._head
         if self._size > 1 and self._head:
             self._head = self._head.get_next()
             self._size -= 1
+
         elif self._size == 1:
             self._head = None
             self._tail = None
             self._size -= 1
-        else:
-            pass
+        return prev_head
 
     def __len__(self) -> int:
         """Returns the size of the List"""

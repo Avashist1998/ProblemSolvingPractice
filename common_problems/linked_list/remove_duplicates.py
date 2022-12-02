@@ -1,8 +1,9 @@
 """Remove duplicate nodes"""
 
+from typing import Optional
 import unittest
-from linked_list.base import ListNode
-from linked_list.singly_linked_list import SinglyLinkedList
+from data_structures.linked_list.base import ListNode
+from data_structures.linked_list.singly_linked_list import SinglyLinkedList
 
 
 def remove_duplicates(root: ListNode):
@@ -11,13 +12,14 @@ def remove_duplicates(root: ListNode):
     walker: ListNode = root
     val_set.add(root.get_val())
     while walker.get_next():
-        walker_next: ListNode = walker.get_next()
-        if walker_next.get_val() in val_set:
-            new_next = walker.get_next().get_next()
+        walker_next: Optional[ListNode] = walker.get_next()
+        if walker_next and walker_next.get_val() in val_set:
+            new_next = walker_next.get_next()
             walker.set_next(new_next)
         else:
-            val_set.add(walker.get_next().get_val())
-            walker = walker.get_next()
+            if walker_next:
+                val_set.add(walker_next.get_val())
+                walker = walker_next
 
 
 class TestRemoveDuplicate(unittest.TestCase):

@@ -39,8 +39,11 @@ class LinkedList(ABC):
         """
 
     @abstractmethod
-    def remove_head(self) -> None:
-        """Removes the head node of the list."""
+    def remove_head(self) -> Optional[ListNode]:
+        """Removes the head node of the list.
+        Returns:
+            return the previous head of the list
+        """
 
     @abstractmethod
     def __len__(self) -> int:
