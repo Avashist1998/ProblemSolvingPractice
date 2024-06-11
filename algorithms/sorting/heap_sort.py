@@ -9,7 +9,7 @@ class HeapSort(SortingAlgo):
 
     def __init__(self):
         """Default constructor"""
-        self.arr = []
+        super().__init__()
 
     def sort(self, arr: List[int]) -> List[int]:
         """Heap sorting method.
@@ -22,29 +22,29 @@ class HeapSort(SortingAlgo):
         """
         len_of_arr = len(arr)
         for i in range(len_of_arr // 2 - 1, -1, -1):
-            self.heapify(arr, len_of_arr, i)
+            self._heapify(arr, len_of_arr, i)
 
         for i in range(len_of_arr - 1, 0, -1):
             temp = arr[0]
             arr[0] = arr[i]
             arr[i] = temp
-            self.heapify(arr, i, 0)
+            self._heapify(arr, i, 0)
         return arr
 
-    def heapify(self, arr: List[int], length: int, index: int):
+    def _heapify(self, arr: List[int], length: int, index: int):
         """Heapify an array of numbers."""
-        right_val = 2 * index + 1
-        left_val = 2 * index + 2
+        left_index = 2 * index + 1
+        right_index = 2 * index + 2
         largest = index
-        if (length > right_val and arr[right_val] > arr[largest]):
-            largest = right_val
-        if (length > left_val and arr[left_val] > arr[largest]):
-            largest = left_val
+        if (length > left_index and arr[left_index] > arr[largest]):
+            largest = left_index
+        if (length > right_index and arr[right_index] > arr[largest]):
+            largest = right_index
         if index != largest:
             temp = arr[index]
             arr[index] = arr[largest]
             arr[largest] = temp
-            self.heapify(arr, length, largest)
+            self._heapify(arr, length, largest)
 
 
 if __name__ == "__main__":
