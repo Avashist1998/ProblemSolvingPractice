@@ -5,7 +5,7 @@ from typing import List
 
 
 class SortingAlgo(ABC):
-    """Abasctract class for a sorting algorithm"""
+    """Abstract class for a sorting algorithm"""
 
     @abstractmethod
     def sort(self, arr: List[int]) -> List[int]:
